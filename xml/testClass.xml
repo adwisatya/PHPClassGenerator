@@ -1,0 +1,17 @@
+<class>
+	<name>
+		TestClass
+	</name>
+	<attributes>
+		<attribute>
+			<name>
+				init_a
+			</name>
+		</attribute>
+		<attribute>
+			<name>
+				init_b
+			</name>
+		</attribute>
+	</attributes>
+</class>

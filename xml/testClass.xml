@@ -41,6 +41,7 @@
 				</param>
 			</params>
 		</method>
+<<<<<<< HEAD
 		<method>
 			<name>
 				average
@@ -57,5 +58,7 @@
 				</param>
 			</params>
 		</method>
+=======
+>>>>>>> 88832627dd730e35636fc322b379bfebd5900685
 	</methods>
 </class>

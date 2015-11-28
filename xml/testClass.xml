@@ -7,11 +7,39 @@
 			<name>
 				init_a
 			</name>
+			<init_value>
+				12
+			</init_value>
 		</attribute>
 		<attribute>
 			<name>
 				init_b
 			</name>
 		</attribute>
+		<attribute>
+			<name>
+				init_c
+			</name>
+		</attribute>
+		<attribute>
+			<name>
+				init_d
+			</name>
+		</attribute>
 	</attributes>
+	<methods>
+		<method>
+			<name>
+				sum_up
+			</name>
+			<params>
+				<param>
+					nilai1
+				</param>
+				<param>
+					nilai2
+				</param>
+			</params>
+		</method>
+	</methods>
 </class>

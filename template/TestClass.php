@@ -1,4 +1,8 @@
 <?php
-init_a="";
+<?php
+init_a=12;
 init_b="";
+init_c="";
+init_d="";
+function __construct($nilai1$nilai2){}
 ?>

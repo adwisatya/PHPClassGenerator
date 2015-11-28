@@ -57,15 +57,10 @@ fwrite($outputFile, $footer);
 fclose($outputFile);
 
 function write_function($name, $attributes){
-<<<<<<< HEAD
-=======
-	print_r($attributes);
->>>>>>> 88832627dd730e35636fc322b379bfebd5900685
 	$result = "function __construct";
 	if($attributes){
 		$result .= "(";
 			if(is_array($attributes)){
-<<<<<<< HEAD
 				$i = 0;
 				$count = count($attributes);
 				foreach($attributes as $attribute){
@@ -79,14 +74,6 @@ function write_function($name, $attributes){
 			}
 		$result .= "){\n";
 		$result .= "\n}\n";
-=======
-				foreach($attributes as $attribute){
-					$result .= "$".trim($attribute);
-				}
-			}
-		$result .= "){";
-		$result .= "}\n";
->>>>>>> 88832627dd730e35636fc322b379bfebd5900685
 	}
 	return $result;
 }

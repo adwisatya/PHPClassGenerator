@@ -3,10 +3,17 @@ init_a=12;
 init_b="";
 init_c="";
 init_d="";
-function __construct($nilai1,$nilai2){
+function __constructor(){
 
 }
-function __construct($nilai1,$nilai2,$nilai2){
+function sum_up($nilai1,$nilai2){
+
+}
+function average($nilai1,$nilai2,$nilai2){
+
+	for($i=0;$i<=12;$i++){
+
+	}
 
 }
 ?>

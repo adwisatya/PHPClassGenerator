@@ -56,6 +56,24 @@
 					nilai2
 				</param>
 			</params>
+			<actions>
+				<action>
+					<type>
+						for
+					</type>
+					<init_value>
+						0
+					</init_value>
+					<end_value>
+						12
+					</end_value>
+				</action>
+				<action>
+					<type>
+						while
+					</type>
+				</action>
+			</actions>
 		</method>
 	</methods>
 </class>

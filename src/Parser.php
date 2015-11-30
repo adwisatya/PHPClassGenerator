@@ -41,7 +41,6 @@ if($class->attributes){
 	fwrite($outputFile,$name);
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
-<<<<<<< HEAD
 		$name = trim($attribute->access)." ".trim($attribute->name);
 			print "\t\tAccess: ".trim($attribute->access)."\n";
 		if($attribute->init_value){
@@ -50,9 +49,7 @@ if($class->attributes){
 		}else{
 			$name .= "="."\"\";\n";
 		}
-=======
-		$name = "\tprivate $".trim($attribute->name).";\n";
->>>>>>> 2998215fe2299a9b4411762683c3c4b662cdda39
+		//$name = "\tprivate $".trim($attribute->name).";\n";
 		fwrite($outputFile,$name);
 	}
 	fwrite($outputFile,"\n\t// CONSTRUCTOR\n");
@@ -67,11 +64,8 @@ if($class->attributes){
 	fwrite($outputFile,"\n");
 }
 print "Write constructor\n";
-<<<<<<< HEAD
 	fwrite($outputFile,"\n");
 	fwrite($outputFile,write_function("public","__constructor","",""));
-=======
->>>>>>> 2998215fe2299a9b4411762683c3c4b662cdda39
 if($class->methods){
 	print "Write method\n";
 	fwrite($outputFile,"\t// METHODS\n");

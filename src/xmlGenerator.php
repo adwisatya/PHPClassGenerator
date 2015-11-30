@@ -5,16 +5,18 @@
 	 * @var        DomDocument
 	 */
 	$xml = new DomDocument("1.0","UTF-8");
+	echo $_GET['test'];
+	$generatedClass = $_GET['test'];
 
 	// inisiasi jumlah variabel
-	$nbAttr = 3;
-	$nbMethod = 4;
+	$nbAttr = count($generatedClass->atribut);
+	$nbMethod = count($generatedClass->method);
 	$nbParam = array(1,2,1,2);
 
 	// create xml
 	$class = $xml->createElement("class");
 	$class = $xml->appendChild($class);
-	$name = $xml->createElement("name", "testClass");
+	$name = $xml->createElement("name", $generatedClass->namaKelas);
 	$name = $class->appendChild($name);
 	$attributes = $xml->createElement("attributes");
 	$attributes = $class->appendChild($attributes);

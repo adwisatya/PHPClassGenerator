@@ -89,7 +89,8 @@
             <hr></hr>
 
             <form>
-              <div id="container" class="col-md-8 col-md-offset-2 column" >
+                <input id="test" name="test" type="hidden"></input>
+                <div id="container" class="col-md-8 col-md-offset-2 column" >
                 <div class="form-group">
                   <label for="disabledTextInput">Nama Kelas</label>
                   <input type="text" id="nama-kelas" class="form-control" placeholder="nama">
@@ -122,25 +123,9 @@
                         <div href="#" class="myButton" onclick="addParameter(0);">Tambah Parameter</div>
                         <br></br/>
                         
-                        <div id="method-attribute-container-0" class="form-group">
-                          <label>Variabel Lokal</label>
-                          <input type="text" id="method-attribute-variable-0-0" class="form-control" placeholder="variabel">
-                          <input type="text" id="method-attribute-nilai-0-0" class="form-control" placeholder="nilai">
-                        </div>
-                        <div href ="#" class="myButton" onclick="addVariabelLokal(0);">Tambah Atribut</div>
-                        <br></br>
-                        
                         <div id="method-body-option-0">
                             <label for="disabledTextInput">Isi</label>
-                            <select id="method-pilihan" class="form-control">
-                                <option>kosong</option>
-                                <option>return</option>
-                                <option>if</option>
-                                <option>do</option>
-                                <option>while</option>
-                                <option>for</option>
-                                <option>string</option>
-                            </select>
+                            <br><textarea id="method-content-0" rows="4" cols="50"></textarea></br>
                         </div>
                     </div> 
                 </div>
@@ -151,7 +136,7 @@
                 <br></br>
                 <hr></hr>
                 <br></br>
-                <button href=# type="button" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
+                <button href=# type="submit" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
               </div>
             </form>
         </center>
@@ -159,22 +144,14 @@
     <script type="text/javascript">
     var numAttribute = 0;
     var numMethod = 0;
+    var numContent = 0;
     var listOfParamter = [0];
-    var listOfVariabel = [0];
     function addParameter(methodIndex) {
         listOfParamter[methodIndex]++;
         var newParamForm = '<br> '+
                         '<label for="disabledTextInput">Parameter '+listOfParamter[methodIndex]+'</label> '+
                         '<input type="text" id="parameter-nama-'+methodIndex+'-'+listOfParamter[methodIndex]+'" class="form-control" placeholder="variabel">';
         $("#method-parameter-container-"+methodIndex).append(newParamForm);
-    }
-
-    function addVariabelLokal(methodIndex) {
-        listOfVariabel[methodIndex]++;
-        var newVariabelForm = '<br><label>Variabel Lokal</label> '+
-                              '<input type="text" id="method-attribute-variable-'+methodIndex+'-'+listOfVariabel[methodIndex]+'" class="form-control" placeholder="variabel"> '+
-                              '<input type="text" id="method-attribute-nilai-'+methodIndex+'-'+listOfVariabel[methodIndex]+'" class="form-control" placeholder="nilai">';
-        $("#method-attribute-container-"+methodIndex).append(newVariabelForm);
     }
 
     function generateClass() {
@@ -190,23 +167,15 @@
         }
         for(var i=0;i<=numMethod;i++){
             var parameters=[];
-            var variables=[];
             for(var j=0;j<=listOfParamter[i];j++){
                 var parameter = $("#parameter-nama-"+i+"-"+j).val();
                 parameters.push(parameter);
             }
-            for(var j=0;j<=listOfVariabel[i];j++){
-                var variable={
-                    nama : $("#method-attribute-variable-"+i+"-"+j).val(),
-                    nilai : $("#method-attribute-nilai-"+i+"-"+j).val()
-                };
-                variables.push(variable);
-            }
 
             var method = {
                 name : $("#method-nama-"+i).val(),
-                parameter : parameters,
-                variable : variables
+                content : $("#method-content-"+i).val(),
+                parameter : parameters
             };
             methods.push(method);
         }
@@ -216,9 +185,9 @@
             atribut : attributes,
             method : methods
         };
-
-
         console.log(generated);
+        document.getElementByID("test").value = generated;
+
     }
 
     $('.attr-trigger-attribute').on('click', function(){
@@ -228,16 +197,6 @@
                             '<input type="text" id="atribut-variabel-'+numAttribute+'" class="form-control" placeholder="variabel"> '+
                             '<input type="text" id="atribut-nilai-'+numAttribute+'" class="form-control" placeholder="nilai">'+
                         '</div>';
-         /*var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
-         var option = $('<option></option>');
-         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
-
-         newForm.append(label);
-         newForm.append(" ");
-         newForm.append(input1);
-         newForm.append(" ");
-         newForm.append(input2);*/
          console.log(newForm);
          $('#attribute-container').append(newForm);
          console.log(numAttribute);
@@ -253,27 +212,10 @@
          newForm.append(input1);
          $('#method-parameter-container').append(newForm);
     });
-        
-    $('.attr-trigger-method-attribute').on('click', function(){
-         var newForm = $('<div></div>');
-         var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
-         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
-
-         newForm.append(label);
-         newForm.append(" ");
-         newForm.append(input1);
-         newForm.append(" ");
-         newForm.append(input2);
-         console.log(newForm);
-         $('#method-attribute-container').append(newForm);
-    });
 
     $('.attr-trigger-method').on('click', function(){
         numMethod++;
-        listOfVariabel.push(0);
         listOfParamter.push(0);
-        console.log(listOfVariabel);
         console.log(listOfParamter);
          var newForm = '<hr><div> '+
                             '<h3><i>Method '+numMethod+'</i></h3> '+
@@ -287,66 +229,16 @@
                             '</div> '+
                             '<div href="#" class="myButton" onclick="addParameter('+numMethod+');">Tambah Parameter</div> '+
                             '<br></br/> '+
-                            '<div id="method-attribute-container-'+numMethod+'" class="form-group"> '+
-                              '<label>Variabel Lokal</label> '+
-                              '<input type="text" id="method-attribute-variable-'+numMethod+'-0" class="form-control" placeholder="variabel"> '+
-                              '<input type="text" id="method-attribute-nilai-'+numMethod+'-0" class="form-control" placeholder="nilai"> '+
-                            '</div> '+
-                            '<div href ="#" class="myButton" onclick="addVariabelLokal('+numMethod+')">Tambah Atribut</div> '+
-                            '<br></br> '+
                             '<div id="method-body-option-'+numMethod+'"> '+
                                 '<label for="disabledTextInput">Isi</label> '+
-                                '<select id="method-pilihan" class="form-control"> '+
-                                    '<option>kosong</option> '+
-                                    '<option>return</option> '+
-                                    '<option>if</option> '+
-                                    '<option>do</option> '+
-                                    '<option>while</option> '+
-                                    '<option>for</option> '+
-                                    '<option>string</option> '+
-                                '</select> '+
+                                '<br><textarea id="method-content-'+numMethod+'"></textarea></br>'+
                             '</div> '+
                         '</div>';
-         /*var hr = $('<hr></hr>');
-         var br = $('<br></br>');
-         var h3 = $('<h3></h3>').text("Method");
-         var label1 = $('<label></label>').attr('id', 'disabledTextInput').text("Method");
-         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nama');
-         var label2 = $('<label></label>').attr('id', 'disabledTextInput').text("Parameter");
-         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var button1 = '<div  id="button-tambah-parameter" href="#" class="attr-trigger-method-parameter myButton">Tambah Parameter</div>'
-         var label3 = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
-         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input4 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
-
-         newForm.append(hr);
-         newForm.append(h3);
-         newForm.append(" ");
-         newForm.append(label1);
-         newForm.append(" ");
-         newForm.append(input1);
-         newForm.append(br);
-         newForm.append(" ");
-         newForm.append(label2);
-         newForm.append(" ");
-         newForm.append(input2);
-         newForm.append(button1);
-         newForm.append(br);
-         newForm.append(" ");
-         newForm.append(label3);
-         newForm.append(" ");
-         newForm.append(input3);
-         newForm.append(" ");
-         newForm.append(input4);*/
          console.log(newForm);
 
          $('#method-container').append(newForm);
          
-    });
-    
-
-
-
+    });  
     </script>
     </body>
 </html>

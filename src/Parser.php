@@ -17,7 +17,7 @@ $header = "<?php\n";
 $header .= "\nclass ".trim($class->name)." {\n\n";
 
 $footer = "\n}\n";
-$footer .= "?>";
+$footer .= "\n?>";
 
 
 // writing //
@@ -69,7 +69,7 @@ fwrite($outputFile, $footer);
 fclose($outputFile);
 
 function write_function($access, $name, $attributes,$actions){
-	$result = "public function ".$name;
+	$result = "\tpublic function ".$name;
 	$result .= "(";
 	if($attributes){
 		if(is_array($attributes)){
@@ -85,7 +85,7 @@ function write_function($access, $name, $attributes,$actions){
 			}
 		}
 	}
-	$result .= "){\n";
+	$result .= ") {\n\t\t";
 	if($actions){
 		if(is_array($actions)){
 			foreach($actions as $action){
@@ -93,7 +93,7 @@ function write_function($access, $name, $attributes,$actions){
 			}
 		}
 	}
-	$result .= "\n}\n";
+	$result .= "\n\t}\n";
 	return $result;
 }
 function write_action($action){
@@ -105,19 +105,19 @@ function write_action($action){
 		 switch (trim($act['type'])) {
 
 		 	case 'for':
-		 		$result .= "\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++){\n\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}\n";
+		 		$result .= "\t\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++){\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t}\n";
 		 		break;
 		 	case 'while':
-		 		$result .= "\twhile(TRUE){\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}\n";
+		 		$result .= "\t\twhile(TRUE){\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t}\n";
 		 		break;
 		 	case 'do_while':
-				$result .= "\tdo{\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}while(TRUE);\n";
+				$result .= "\t\tdo{\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t}while(TRUE);\n";
 		 		break;
 		 	default:
 		 		

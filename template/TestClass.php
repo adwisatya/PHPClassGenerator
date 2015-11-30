@@ -8,16 +8,6 @@ class TestClass {
 	private $init_c;
 	private $init_d;
 
-<<<<<<< HEAD
-public function __constructor(){
-
-}
-public function sum_up($nilai1,$nilai2){
-
-}
-public function average($nilai1,$nilai2,$nilai2){
-
-=======
 	// CONSTRUCTOR
 	public function __constructor() {
 		$init_a=12;
@@ -55,19 +45,8 @@ public function average($nilai1,$nilai2,$nilai2){
 	}
 	public function average($nilai1,$nilai2,$nilai2) {
 		
-		for($i=0;$i<=12;$i++) {
-			//your code
-		}
-		while(TRUE) {
-			//your code
-		}
-		do {
-			//your code
-		} while(TRUE);
-
 	}
 
->>>>>>> 2998215fe2299a9b4411762683c3c4b662cdda39
 }
 
 ?>

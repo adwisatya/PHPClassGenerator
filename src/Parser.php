@@ -41,15 +41,7 @@ if($class->attributes){
 	fwrite($outputFile,$name);
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
-		$name = trim($attribute->access)." ".trim($attribute->name);
-			print "\t\tAccess: ".trim($attribute->access)."\n";
-		if($attribute->init_value){
-			print "\t\tInitial value: ".trim($attribute->init_value)."\n";
-			$name .= "=".trim($attribute->init_value).";\n";	
-		}else{
-			$name .= "="."\"\";\n";
-		}
-		//$name = "\tprivate $".trim($attribute->name).";\n";
+		$name = "\tprivate $".trim($attribute->name).";\n";
 		fwrite($outputFile,$name);
 	}
 	fwrite($outputFile,"\n\t// CONSTRUCTOR\n");
@@ -64,14 +56,11 @@ if($class->attributes){
 	fwrite($outputFile,"\n");
 }
 print "Write constructor\n";
-	fwrite($outputFile,"\n");
-	fwrite($outputFile,write_function("public","__constructor","",""));
 if($class->methods){
 	print "Write method\n";
 	fwrite($outputFile,"\t// METHODS\n");
 	foreach($class->methods->method as $method){
 		print "\tMethod: ".trim($method->name)."\n";
-		print "\t\tAccess: ".trim($method->access)."\n";
 		$method_name = trim($method->name);
 		if($method->actions){
 			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
@@ -145,27 +134,27 @@ function write_action($action){
 	foreach($action as $act){
 		//print_r($act['type']);
 		print("\t\tActions: ".trim($act['type'])."\n");
-		 switch (trim($act['type'])) {
+		switch (trim($act['type'])) {
 
-		 	case 'for':
-		 		$result .= "\t\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++) {\n";
-		 		$result .= "\t\t\t//your code\n";
-		 		$result .= "\t\t}\n";
-		 		break;
-		 	case 'while':
-		 		$result .= "\t\twhile(TRUE) {\n";
-		 		$result .= "\t\t\t//your code\n";
-		 		$result .= "\t\t}\n";
-		 		break;
-		 	case 'do_while':
+			case 'for':
+				$result .= "\t\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++) {\n";
+				$result .= "\t\t\t//your code\n";
+				$result .= "\t\t}\n";
+				break;
+			case 'while':
+				$result .= "\t\twhile(TRUE) {\n";
+				$result .= "\t\t\t//your code\n";
+				$result .= "\t\t}\n";
+				break;
+			case 'do_while':
 				$result .= "\t\tdo {\n";
-		 		$result .= "\t\t\t//your code\n";
-		 		$result .= "\t\t} while(TRUE);\n";
-		 		break;
-		 	default:
-		 		
-		 		break;
-		 }
+				$result .= "\t\t\t//your code\n";
+				$result .= "\t\t} while(TRUE);\n";
+				break;
+			default:
+
+				break;
+		}
 	}
 	return $result;
 }

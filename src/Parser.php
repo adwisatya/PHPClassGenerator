@@ -14,7 +14,7 @@ if($class->name){
 
 // preparing header and footer//
 $header = "<?php\n";
-$header .= "\nClass ".trim($class->name)."{\n\n";
+$header .= "\nclass ".trim($class->name)." {\n\n";
 
 $footer = "\n}\n";
 $footer .= "?>";
@@ -39,7 +39,7 @@ if($class->attributes){
 	print "Write attribute\n";
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
-		$name = trim($attribute->access)." ".trim($attribute->name);
+		$name = "\t".trim($attribute->access)." $".trim($attribute->name);
 		if($attribute->init_value){
 			print "\t\tInitial value: ".trim($attribute->init_value)."\n";
 			$name .= "=".trim($attribute->init_value).";\n";	
@@ -69,7 +69,7 @@ fwrite($outputFile, $footer);
 fclose($outputFile);
 
 function write_function($access, $name, $attributes,$actions){
-	$result = $access." function ".$name;
+	$result = "public function ".$name;
 	$result .= "(";
 	if($attributes){
 		if(is_array($attributes)){

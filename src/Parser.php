@@ -40,6 +40,7 @@ if($class->attributes){
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
 		$name = trim($attribute->access)." ".trim($attribute->name);
+			print "\t\tAccess: ".trim($attribute->access)."\n";
 		if($attribute->init_value){
 			print "\t\tInitial value: ".trim($attribute->init_value)."\n";
 			$name .= "=".trim($attribute->init_value).";\n";	
@@ -51,11 +52,12 @@ if($class->attributes){
 }
 print "Write constructor\n";
 	fwrite($outputFile,"\n");
-	fwrite($outputFile,write_function("","__constructor","",""));
+	fwrite($outputFile,write_function("public","__constructor","",""));
 if($class->methods){
 	print "Write method\n";
 	foreach($class->methods->method as $method){
 		print "\tMethod: ".trim($method->name)."\n";
+		print "\t\tAccess: ".trim($method->access)."\n";
 		$method_name = trim($method->name);
 		if($method->actions){
 			fwrite($outputFile,write_function(trim($method->access),$method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));

@@ -4,20 +4,23 @@ Inisiasi
 Write header
 Write attribute
 	Atribute: init_a
+		Access: public
 		Initial value: 12
 	Atribute: init_b
+		Access: public
 	Atribute: init_c
+		Access: private
 	Atribute: init_d
+		Access: public
 Write constructor
 Write method
 	Method: sum_up
+		Access: public
 		Parameter: nilai1
 		Parameter: nilai2
 	Method: average
+		Access: public
 		Parameter: nilai1
 		Parameter: nilai2
 		Parameter: nilai2
-		Actions: for
-		Actions: while
-		Actions: do_while
 Write footer

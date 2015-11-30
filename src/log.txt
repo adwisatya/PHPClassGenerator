@@ -1,0 +1,22 @@
+Inisiasi
+	Creating ../template/TestClass.php
+	Delete existing file ../template/TestClass.php
+Write header
+Write attribute
+	Atribute: init_a
+		Initial value: 12
+	Atribute: init_b
+	Atribute: init_c
+	Atribute: init_d
+Write constructor
+Write method
+	Method: sum_up
+		Parameter: nilai1
+		Parameter: nilai2
+	Method: average
+		Parameter: nilai1
+		Parameter: nilai2
+		Parameter: nilai2
+		Actions: for
+		Actions: while
+Write footer

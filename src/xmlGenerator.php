@@ -33,7 +33,7 @@
 		$method = $methods->appendChild($method);
 		$methodName = $xml->createElement("name","method".$i);
 		$methodName = $method->appendChild($methodName);
-		$arguments = $xml->createElement("arguments");
+		$arguments = $xml->createElement("params");
 		$arguments = $method->appendChild($arguments);
 		for($j=0; $j<$nbParam[$i]; $j++) {
 			$param = $xml->createElement("param","param".$j);

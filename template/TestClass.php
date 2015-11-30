@@ -1,11 +1,4 @@
 <?php
-<<<<<<< HEAD
-init_a="";
-init_b="";
-?><?php
-init_a="";
-init_b="";
-=======
 
 class TestClass {
 
@@ -66,5 +59,4 @@ class TestClass {
 
 }
 
->>>>>>> a4dcb41a4b60edb50998625fa3d8a568f1253c32
 ?>

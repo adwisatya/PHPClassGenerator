@@ -4,36 +4,24 @@
 	</name>
 	<attributes>
 		<attribute>
-			<access>
-				public
-			</access>
 			<name>
 				init_a
 			</name>
-			<init_value>
+			<value>
 				12
-			</init_value>
+			</value>
 		</attribute>
 		<attribute>
-			<access>
-				public
-			</access>
 			<name>
 				init_b
 			</name>
 		</attribute>
 		<attribute>
-			<access>
-				private
-			</access>
 			<name>
 				init_c
 			</name>
 		</attribute>
 		<attribute>
-			<access>
-				public
-			</access>
 			<name>
 				init_d
 			</name>
@@ -41,9 +29,6 @@
 	</attributes>
 	<methods>
 		<method>
-			<access>
-				public
-			</access>
 			<name>
 				sum_up
 			</name>
@@ -57,9 +42,6 @@
 			</params>
 		</method>
 		<method>
-			<access>
-				public
-			</access>
 			<name>
 				average
 			</name>

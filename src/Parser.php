@@ -76,9 +76,9 @@ fclose($outputFile);
 function write_constructor($attributes, $param){
 	$result = "\tpublic function __constructor($param) {\n\t\t";
 	foreach($attributes->attribute as $attribute){
-		if($attribute->init_value){
+		if($attribute->value){
 			$name = "$".trim($attribute->name);
-			$name .= "=".trim($attribute->init_value).";\n";
+			$name .= "=".trim($attribute->value).";\n";
 			$result.=$name;
 		}
 	}

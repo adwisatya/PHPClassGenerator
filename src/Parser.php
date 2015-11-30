@@ -14,7 +14,11 @@ if($class->name){
 
 // preparing header and footer//
 $header = "<?php\n";
-$footer = "?>";
+$header .= "\nClass ".trim($class->name)."{\n\n";
+
+$footer = "\n}\n";
+$footer .= "?>";
+
 
 // writing //
 print "\tCreating ".$outputLocation."\n";
@@ -35,7 +39,7 @@ if($class->attributes){
 	print "Write attribute\n";
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
-		$name = trim($attribute->name);
+		$name = trim($attribute->access)." ".trim($attribute->name);
 		if($attribute->init_value){
 			print "\t\tInitial value: ".trim($attribute->init_value)."\n";
 			$name .= "=".trim($attribute->init_value).";\n";	
@@ -46,16 +50,17 @@ if($class->attributes){
 	}
 }
 print "Write constructor\n";
-	fwrite($outputFile,write_function("__constructor","",""));
+	fwrite($outputFile,"\n");
+	fwrite($outputFile,write_function("","__constructor","",""));
 if($class->methods){
 	print "Write method\n";
 	foreach($class->methods->method as $method){
 		print "\tMethod: ".trim($method->name)."\n";
 		$method_name = trim($method->name);
 		if($method->actions){
-			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
+			fwrite($outputFile,write_function(trim($method->access),$method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
 		}else{
-			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),NULL));
+			fwrite($outputFile,write_function(trim($method->access),$method_name,json_decode(json_encode($method->params->param),TRUE),""));
 		}
 	}
 }
@@ -63,8 +68,8 @@ print "Write footer\n";
 fwrite($outputFile, $footer);
 fclose($outputFile);
 
-function write_function($name, $attributes,$actions){
-	$result = "function ".$name;
+function write_function($access, $name, $attributes,$actions){
+	$result = $access." function ".$name;
 	$result .= "(";
 	if($attributes){
 		if(is_array($attributes)){

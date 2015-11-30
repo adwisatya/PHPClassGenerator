@@ -19,4 +19,5 @@ Write method
 		Parameter: nilai2
 		Actions: for
 		Actions: while
+		Actions: do_while
 Write footer

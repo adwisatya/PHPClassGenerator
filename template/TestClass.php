@@ -1,15 +1,19 @@
 <?php
-init_a=12;
-init_b="";
-init_c="";
-init_d="";
-function __constructor(){
+
+Class TestClass{
+
+public init_a=12;
+public init_b="";
+private init_c="";
+public init_d="";
+
+ function __constructor(){
 
 }
-function sum_up($nilai1,$nilai2){
+public function sum_up($nilai1,$nilai2){
 
 }
-function average($nilai1,$nilai2,$nilai2){
+public function average($nilai1,$nilai2,$nilai2){
 
 	for($i=0;$i<=12;$i++){
 
@@ -21,6 +25,8 @@ function average($nilai1,$nilai2,$nilai2){
 	do{
 		//your code
 	}while(TRUE);
+
+}
 
 }
 ?>

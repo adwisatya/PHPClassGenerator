@@ -89,8 +89,7 @@
             <hr></hr>
 
             <form>
-                <input id="test" name="test" type="hidden"></input>
-                <div id="container" class="col-md-8 col-md-offset-2 column" >
+              <div id="container" class="col-md-8 col-md-offset-2 column" >
                 <div class="form-group">
                   <label for="disabledTextInput">Nama Kelas</label>
                   <input type="text" id="nama-kelas" class="form-control" placeholder="nama">
@@ -136,7 +135,7 @@
                 <br></br>
                 <hr></hr>
                 <br></br>
-                <button href=# type="submit" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
+                <button href=# type="button" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
               </div>
             </form>
         </center>
@@ -185,9 +184,9 @@
             atribut : attributes,
             method : methods
         };
-        console.log(generated);
-        document.getElementByID("test").value = generated;
 
+
+        console.log(generated);
     }
 
     $('.attr-trigger-attribute').on('click', function(){
@@ -231,7 +230,7 @@
                             '<br></br/> '+
                             '<div id="method-body-option-'+numMethod+'"> '+
                                 '<label for="disabledTextInput">Isi</label> '+
-                                '<br><textarea id="method-content-'+numMethod+'"></textarea></br>'+
+                                '<br><textarea id="method-content-'+numMethod+'" rows="4" cols="50"></textarea></br>'+
                             '</div> '+
                         '</div>';
          console.log(newForm);

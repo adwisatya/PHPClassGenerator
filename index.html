@@ -97,25 +97,17 @@
                 <h3>Atribut</h3>
                 <div id="attribute-container" class="form-group">
                   <label id="disabledTextInput">Atribut</label>
-                  <select id="atribut-pilihan" class="form-control">
-                        <option>public</option>
-                        <option>private</option>
-                  </select>
                   <input type="text" id="atribut-variabel" class="form-control" placeholder="variabel">
                   <input type="text" id="atribut-nilai" class="form-control" placeholder="nilai">
                 </div>
                 <div type="" href="#" id="disabledTextInput" class="attr-trigger-attribute myButton">Tambah Atribut</div>
-                
+                <hr>
 
 
                 <div id="method-container" class="form-group">
                     <h3><i>Method</i></h3>
-                    <div class="form-group">
+                    <div id="method-head" class="form-group">
                       <label for="disabledTextInput"><i>Method</i></label>
-                      <select id="method-pilihan" class="form-control">
-                        <option>public</option>
-                        <option>private</option>
-                      </select>
                       <input type="text" id="method-nama" class="form-control" placeholder="nama">
                     </div>
                     
@@ -128,17 +120,13 @@
                     
                     <div id="method-attribute-container" class="form-group">
                       <label id="disabledTextInput">Atribut</label>
-                      <select type ="text" id="method-attribute-pilihan" class="form-control">
-                        <option >public</option>
-                        <option >private</option>
-                      </select>
                       <input type="text" id="method-attribute-variable" class="form-control" placeholder="variabel">
                       <input type="text" id="method-attribute-nilai" class="form-control" placeholder="nilai">
                     </div>
                     <div href ="#" id ="disabledTextInput" class="attr-trigger-method-attribute myButton">Tambah Atribut</div>
                     <br></br>
                     
-                    <div>
+                    <div id="method-body-option">
                         <label for="disabledTextInput">Isi</label>
                         <select id="method-pilihan" class="form-control">
                             <option>kosong</option>
@@ -169,17 +157,14 @@
          var newForm = $('<div></div>');
          var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
          var option = $('<option></option>');
-         var input1 = $('<select></select>').attr('id', 'atribut-pilihan').attr('type', 'text');
-         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
 
          newForm.append(label);
          newForm.append(" ");
          newForm.append(input1);
          newForm.append(" ");
          newForm.append(input2);
-         newForm.append(" ");
-         newForm.append(input3);
          console.log(newForm);
          $('#attribute-container').append(newForm);
     });
@@ -198,40 +183,53 @@
     $('.attr-trigger-method-attribute').on('click', function(){
          var newForm = $('<div></div>');
          var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
-         var input1 = $('<select></select>').attr('id', 'method-attribute-pilihan').attr('type', 'text');
-         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
 
          newForm.append(label);
          newForm.append(" ");
          newForm.append(input1);
          newForm.append(" ");
          newForm.append(input2);
-         newForm.append(" ");
-         newForm.append(input3);
          console.log(newForm);
          $('#method-attribute-container').append(newForm);
     });
 
     $('.attr-trigger-method').on('click', function(){
          var newForm = $('<div></div>');
+         var hr = $('<hr></hr>');
+         var br = $('<br></br>');
          var h3 = $('<h3></h3>').text("Method");
-         var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
-         var input1 = $('<select></select>').attr('id', 'disabledSelect').attr('type', 'text');
+         var label1 = $('<label></label>').attr('id', 'disabledTextInput').text("Method");
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nama');
+         var label2 = $('<label></label>').attr('id', 'disabledTextInput').text("Parameter");
          var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
-         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+         var label3 = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
+         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input4 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
 
+         newForm.append(hr);
          newForm.append(h3);
          newForm.append(" ");
-         newForm.append(label);
+         newForm.append(label1);
          newForm.append(" ");
          newForm.append(input1);
+         newForm.append(br);
+         newForm.append(" ");
+         newForm.append(label2);
          newForm.append(" ");
          newForm.append(input2);
+         newForm.append(br);
+         newForm.append(" ");
+         newForm.append(label3);
          newForm.append(" ");
          newForm.append(input3);
+         newForm.append(" ");
+         newForm.append(input4);
          console.log(newForm);
+
          $('#method-container').append(newForm);
+         
     });
     
 

@@ -14,10 +14,10 @@ if($class->name){
 
 // preparing header and footer//
 $header = "<?php\n";
-$header .= "\nClass ".trim($class->name)."{\n\n";
+$header .= "\nclass ".trim($class->name)." {\n\n";
 
 $footer = "\n}\n";
-$footer .= "?>";
+$footer .= "\n?>";
 
 
 // writing //
@@ -37,8 +37,11 @@ fwrite($outputFile,$header);
 
 if($class->attributes){
 	print "Write attribute\n";
+	$name = "\t// ATTRIBUTES\n";
+	fwrite($outputFile,$name);
 	foreach($class->attributes->attribute as $attribute){
 		print "\tAtribute: ".trim($attribute->name)."\n";
+<<<<<<< HEAD
 		$name = trim($attribute->access)." ".trim($attribute->name);
 			print "\t\tAccess: ".trim($attribute->access)."\n";
 		if($attribute->init_value){
@@ -47,22 +50,39 @@ if($class->attributes){
 		}else{
 			$name .= "="."\"\";\n";
 		}
+=======
+		$name = "\tprivate $".trim($attribute->name).";\n";
+>>>>>>> 2998215fe2299a9b4411762683c3c4b662cdda39
 		fwrite($outputFile,$name);
 	}
+	fwrite($outputFile,"\n\t// CONSTRUCTOR\n");
+	fwrite($outputFile,write_constructor($class->attributes,""));
+	// SETTER AND GETTER
+	fwrite($outputFile,"\n\t// GETTER AND SETTER\n");
+	foreach($class->attributes->attribute as $attribute){
+		print "\tSetter and Getter: ".trim($attribute->name)."\n";
+		fwrite($outputFile,write_getter(trim($attribute->name)));
+		fwrite($outputFile,write_setter(trim($attribute->name)));
+	}
+	fwrite($outputFile,"\n");
 }
 print "Write constructor\n";
+<<<<<<< HEAD
 	fwrite($outputFile,"\n");
 	fwrite($outputFile,write_function("public","__constructor","",""));
+=======
+>>>>>>> 2998215fe2299a9b4411762683c3c4b662cdda39
 if($class->methods){
 	print "Write method\n";
+	fwrite($outputFile,"\t// METHODS\n");
 	foreach($class->methods->method as $method){
 		print "\tMethod: ".trim($method->name)."\n";
 		print "\t\tAccess: ".trim($method->access)."\n";
 		$method_name = trim($method->name);
 		if($method->actions){
-			fwrite($outputFile,write_function(trim($method->access),$method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
+			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
 		}else{
-			fwrite($outputFile,write_function(trim($method->access),$method_name,json_decode(json_encode($method->params->param),TRUE),""));
+			fwrite($outputFile,write_function($method_name,json_decode(json_encode($method->params->param),TRUE),""));
 		}
 	}
 }
@@ -70,8 +90,35 @@ print "Write footer\n";
 fwrite($outputFile, $footer);
 fclose($outputFile);
 
-function write_function($access, $name, $attributes,$actions){
-	$result = $access." function ".$name;
+function write_constructor($attributes, $param){
+	$result = "\tpublic function __constructor($param) {\n\t\t";
+	foreach($attributes->attribute as $attribute){
+		if($attribute->value){
+			$name = "$".trim($attribute->name);
+			$name .= "=".trim($attribute->value).";\n";
+			$result.=$name;
+		}
+	}
+	$result .= "\t}\n";
+	return $result;
+}
+
+function write_setter($name){
+	$result = "\tpublic function set_".$name;
+	$result .= "(\$param) {\n\t\t$".$name."=\$param;";
+	$result .= "\n\t}\n";
+	return $result;
+}
+
+function write_getter($name){
+	$result = "\tpublic function get_".$name;
+	$result .= "() {\n\t\treturn ".$name.";";
+	$result .= "\n\t}\n";
+	return $result;
+}
+
+function write_function($name, $attributes, $actions){
+	$result = "\tpublic function ".$name;
 	$result .= "(";
 	if($attributes){
 		if(is_array($attributes)){
@@ -87,7 +134,7 @@ function write_function($access, $name, $attributes,$actions){
 			}
 		}
 	}
-	$result .= "){\n";
+	$result .= ") {\n\t\t";
 	if($actions){
 		if(is_array($actions)){
 			foreach($actions as $action){
@@ -95,7 +142,7 @@ function write_function($access, $name, $attributes,$actions){
 			}
 		}
 	}
-	$result .= "\n}\n";
+	$result .= "\n\t}\n";
 	return $result;
 }
 function write_action($action){
@@ -107,19 +154,19 @@ function write_action($action){
 		 switch (trim($act['type'])) {
 
 		 	case 'for':
-		 		$result .= "\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++){\n\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}\n";
+		 		$result .= "\t\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++) {\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t}\n";
 		 		break;
 		 	case 'while':
-		 		$result .= "\twhile(TRUE){\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}\n";
+		 		$result .= "\t\twhile(TRUE) {\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t}\n";
 		 		break;
 		 	case 'do_while':
-				$result .= "\tdo{\n";
-		 		$result .= "\t\t//your code\n";
-		 		$result .= "\t}while(TRUE);\n";
+				$result .= "\t\tdo {\n";
+		 		$result .= "\t\t\t//your code\n";
+		 		$result .= "\t\t} while(TRUE);\n";
 		 		break;
 		 	default:
 		 		

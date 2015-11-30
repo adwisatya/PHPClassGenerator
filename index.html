@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PHP Class Generator</h1></title>
+    </head>
+    <style type="text/css">
+        .hide{
+            display: none;
+        }
+
+        #trigger:hover{
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        .myButton {
+            -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            box-shadow:inset 0px 1px 0px 0px #ffffff;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+            background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+            background-color:#f9f9f9;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #dcdcdc;
+            display:inline-block;
+            cursor:pointer;
+            color:#666666;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffffff;
+        }
+        .myButtonBig {
+            -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+            box-shadow:inset 0px 1px 0px 0px #ffffff;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+            background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+            background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+            background-color:#f9f9f9;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #dcdcdc;
+            display:inline-block;
+            cursor:pointer;
+            color:#666666;
+            font-family:Arial;
+            font-size:20px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffffff;
+        }
+        .myButton:hover {
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+            background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+            background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+            background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+            background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+            background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+            background-color:#e9e9e9;
+        }
+        .myButton:active {
+            position:relative;
+            top:1px;
+        }
+
+
+    </style>
+    <body>
+        <center>
+            <h1>PHP Class Generator</h1>
+            <hr></hr>
+            <hr></hr>
+
+            <form>
+              <div id="container" class="col-md-8 col-md-offset-2 column" >
+                <div class="form-group">
+                  <label for="disabledTextInput">Nama Kelas</label>
+                  <input type="text" id="nama-kelas" class="form-control" placeholder="nama">
+                </div>
+                <h3>Atribut</h3>
+                <div id="attribute-container" class="form-group">
+                  <div>
+                      <label>Atribut</label>
+                      <input type="text" id="atribut-variabel-0" class="form-control" placeholder="variabel">
+                      <input type="text" id="atribut-nilai-0" class="form-control" placeholder="nilai">
+                  </div>
+                </div>
+
+                <div type="" href="#" id="disabledTextInput" class="attr-trigger-attribute myButton">Tambah Atribut</div>
+                <hr>
+
+
+                <div id="method-container" class="form-group">
+                    <div>
+                        <h3><i>Method 0</i></h3>
+                        <div id="method-head-0" class="form-group">
+                          <label for="disabledTextInput">Nama <i>Method</i></label>
+                          <input type="text" id="method-nama-0" class="form-control" placeholder="nama">
+                        </div>
+                        
+                        <div id="method-parameter-container-0" class="form-group">
+                          <label for="disabledTextInput">Parameter 0</label>
+                          <input type="text" id="parameter-nama-0-0" class="form-control" placeholder="variabel">
+                        </div>
+                        <div href="#" class="myButton" onclick="addParameter(0);">Tambah Parameter</div>
+                        <br></br/>
+                        
+                        <div id="method-attribute-container-0" class="form-group">
+                          <label>Variabel Lokal</label>
+                          <input type="text" id="method-attribute-variable-0-0" class="form-control" placeholder="variabel">
+                          <input type="text" id="method-attribute-nilai-0-0" class="form-control" placeholder="nilai">
+                        </div>
+                        <div href ="#" class="myButton" onclick="addVariabelLokal(0);">Tambah Atribut</div>
+                        <br></br>
+                        
+                        <div id="method-body-option-0">
+                            <label for="disabledTextInput">Isi</label>
+                            <select id="method-pilihan" class="form-control">
+                                <option>kosong</option>
+                                <option>return</option>
+                                <option>if</option>
+                                <option>do</option>
+                                <option>while</option>
+                                <option>for</option>
+                                <option>string</option>
+                            </select>
+                        </div>
+                    </div> 
+                </div>
+                              
+                <br>
+                    <div href ="#" id ="disabledTextInput" class="attr-trigger-method myButtonBig">Tambah <i>Method</i></div>
+                </br>
+                <br></br>
+                <hr></hr>
+                <br></br>
+                <button type="button" class="btn btn-primary" onclick="generateClass();"><i>Generate</i></button>
+              </div>
+            </form>
+        </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript">
+    var numAttribute = 0;
+    var numMethod = 0;
+    var listOfParamter = [0];
+    var listOfVariabel = [0];
+    function addParameter(methodIndex) {
+        listOfParamter[methodIndex]++;
+        var newParamForm = '<br> '+
+                        '<label for="disabledTextInput">Parameter '+listOfParamter[methodIndex]+'</label> '+
+                        '<input type="text" id="parameter-nama-'+methodIndex+'-'+listOfParamter[methodIndex]+'" class="form-control" placeholder="variabel">';
+        $("#method-parameter-container-"+methodIndex).append(newParamForm);
+    }
+
+    function addVariabelLokal(methodIndex) {
+        listOfVariabel[methodIndex]++;
+        var newVariabelForm = '<br><label>Variabel Lokal</label> '+
+                              '<input type="text" id="method-attribute-variable-'+methodIndex+'-'+listOfVariabel[methodIndex]+'" class="form-control" placeholder="variabel"> '+
+                              '<input type="text" id="method-attribute-nilai-'+methodIndex+'-'+listOfVariabel[methodIndex]+'" class="form-control" placeholder="nilai">';
+        $("#method-attribute-container-"+methodIndex).append(newVariabelForm);
+    }
+
+    function generateClass() {
+        var className = $("#nama-kelas").val();
+        var attributes = [];
+        var methods=[];
+        for (var i=0;i<=numAttribute;i++) {
+            var attribute = {
+                nama : $("#atribut-variabel-"+i).val(),
+                nilai : $("#atribut-nilai-"+i).val()
+            };
+            attributes.push(attribute);
+        }
+        for(var i=0;i<=numMethod;i++){
+            var parameters=[];
+            var variables=[];
+            for(var j=0;j<=listOfParamter[i];j++){
+                var parameter = $("#parameter-nama-"+i+"-"+j).val();
+                parameters.push(parameter);
+            }
+            for(var j=0;j<=listOfVariabel[i];j++){
+                var variable={
+                    nama : $("#method-attribute-variable-"+i+"-"+j).val(),
+                    nilai : $("#method-attribute-nilai-"+i+"-"+j).val()
+                };
+                variables.push(variable);
+            }
+
+            var method = {
+                name : $("#method-nama-"+i).val(),
+                parameter : parameters,
+                variable : variables
+            };
+            methods.push(method);
+        }
+
+        var generated = {
+            namaKelas : className,
+            atribut : attributes,
+            method : methods
+        };
+
+
+        console.log(generated);
+    }
+
+    $('.attr-trigger-attribute').on('click', function(){
+        numAttribute++;
+        var newForm = '<div>'+
+                            '<label>Atribut</label> '+
+                            '<input type="text" id="atribut-variabel-'+numAttribute+'" class="form-control" placeholder="variabel"> '+
+                            '<input type="text" id="atribut-nilai-'+numAttribute+'" class="form-control" placeholder="nilai">'+
+                        '</div>';
+         /*var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
+         var option = $('<option></option>');
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+
+         newForm.append(label);
+         newForm.append(" ");
+         newForm.append(input1);
+         newForm.append(" ");
+         newForm.append(input2);*/
+         console.log(newForm);
+         $('#attribute-container').append(newForm);
+         console.log(numAttribute);
+    });
+
+    $('.attr-trigger-method-parameter').on('click', function(){
+         var newForm = $('<div></div>');
+         var label = $('<label></label>').attr('for', 'disabledTextInput').text("Parameter");
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+
+         newForm.append(label);
+         newForm.append(" ");
+         newForm.append(input1);
+         $('#method-parameter-container').append(newForm);
+    });
+        
+    $('.attr-trigger-method-attribute').on('click', function(){
+         var newForm = $('<div></div>');
+         var label = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+
+         newForm.append(label);
+         newForm.append(" ");
+         newForm.append(input1);
+         newForm.append(" ");
+         newForm.append(input2);
+         console.log(newForm);
+         $('#method-attribute-container').append(newForm);
+    });
+
+    $('.attr-trigger-method').on('click', function(){
+        numMethod++;
+        listOfVariabel.push(0);
+        listOfParamter.push(0);
+        console.log(listOfVariabel);
+        console.log(listOfParamter);
+         var newForm = '<hr><div> '+
+                            '<h3><i>Method '+numMethod+'</i></h3> '+
+                            '<div id="method-head-'+numMethod+'" class="form-group"> '+
+                              '<label for="disabledTextInput">Nama <i>Method</i></label> '+
+                              '<input type="text" id="method-nama-'+numMethod+'" class="form-control" placeholder="nama"> '+
+                            '</div> '+
+                            '<div id="method-parameter-container-'+numMethod+'" class="form-group"> '+
+                              '<label for="disabledTextInput">Parameter 0</label> '+
+                              '<input type="text" id="parameter-nama-'+numMethod+'-0" class="form-control" placeholder="variabel"> '+
+                            '</div> '+
+                            '<div href="#" class="myButton" onclick="addParameter('+numMethod+');">Tambah Parameter</div> '+
+                            '<br></br/> '+
+                            '<div id="method-attribute-container-'+numMethod+'" class="form-group"> '+
+                              '<label>Variabel Lokal</label> '+
+                              '<input type="text" id="method-attribute-variable-'+numMethod+'-0" class="form-control" placeholder="variabel"> '+
+                              '<input type="text" id="method-attribute-nilai-'+numMethod+'-0" class="form-control" placeholder="nilai"> '+
+                            '</div> '+
+                            '<div href ="#" class="myButton" onclick="addVariabelLokal('+numMethod+')">Tambah Atribut</div> '+
+                            '<br></br> '+
+                            '<div id="method-body-option-'+numMethod+'"> '+
+                                '<label for="disabledTextInput">Isi</label> '+
+                                '<select id="method-pilihan" class="form-control"> '+
+                                    '<option>kosong</option> '+
+                                    '<option>return</option> '+
+                                    '<option>if</option> '+
+                                    '<option>do</option> '+
+                                    '<option>while</option> '+
+                                    '<option>for</option> '+
+                                    '<option>string</option> '+
+                                '</select> '+
+                            '</div> '+
+                        '</div>';
+         /*var hr = $('<hr></hr>');
+         var br = $('<br></br>');
+         var h3 = $('<h3></h3>').text("Method");
+         var label1 = $('<label></label>').attr('id', 'disabledTextInput').text("Method");
+         var input1 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nama');
+         var label2 = $('<label></label>').attr('id', 'disabledTextInput').text("Parameter");
+         var input2 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var button1 = '<div  id="button-tambah-parameter" href="#" class="attr-trigger-method-parameter myButton">Tambah Parameter</div>'
+         var label3 = $('<label></label>').attr('id', 'disabledTextInput').text("Atribut");
+         var input3 = $('<input></input>').attr('type', 'text').attr('placeholder', 'variabel');
+         var input4 = $('<input></input>').attr('type', 'text').attr('placeholder', 'nilai');
+
+         newForm.append(hr);
+         newForm.append(h3);
+         newForm.append(" ");
+         newForm.append(label1);
+         newForm.append(" ");
+         newForm.append(input1);
+         newForm.append(br);
+         newForm.append(" ");
+         newForm.append(label2);
+         newForm.append(" ");
+         newForm.append(input2);
+         newForm.append(button1);
+         newForm.append(br);
+         newForm.append(" ");
+         newForm.append(label3);
+         newForm.append(" ");
+         newForm.append(input3);
+         newForm.append(" ");
+         newForm.append(input4);*/
+         console.log(newForm);
+
+         $('#method-container').append(newForm);
+         
+    });
+    
+
+
+
+    </script>
+    </body>
+</html>

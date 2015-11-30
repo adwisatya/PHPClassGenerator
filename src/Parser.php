@@ -1,5 +1,5 @@
 <?php
-$xmlLocation = "../xml/testClass.xml";
+$xmlLocation = "../xml/kasus_uji.xml";
 $outputLocation = "../template/";
 
 print "Inisiasi\n";
@@ -31,34 +31,34 @@ $outputFile = fopen($outputLocation,"a");
 print "Write header\n";
 fwrite($outputFile,$header);
 
-
-print "Write attribute\n";
-foreach($class->attributes->attribute as $attribute){
-	print "\tAtribute: ".trim($attribute->name)."\n";
-	$name = trim($attribute->name);
-	if($attribute->init_value){
-		print "\t\tInitial value: ".trim($attribute->init_value)."\n";
-		$name .= "=".trim($attribute->init_value).";\n";	
-	}else{
-		$name .= "="."\"\";\n";
+if($class->attributes){
+	print "Write attribute\n";
+	foreach($class->attributes->attribute as $attribute){
+		print "\tAtribute: ".trim($attribute->name)."\n";
+		$name = trim($attribute->name);
+		if($attribute->init_value){
+			print "\t\tInitial value: ".trim($attribute->init_value)."\n";
+			$name .= "=".trim($attribute->init_value).";\n";	
+		}else{
+			$name .= "="."\"\";\n";
+		}
+		fwrite($outputFile,$name);
 	}
-	fwrite($outputFile,$name);
 }
-
 print "Write constructor\n";
 	fwrite($outputFile,write_function("__constructor","",""));
-
-print "Write method\n";
-foreach($class->methods->method as $method){
-	print "\tMethod: ".trim($method->name)."\n";
-	$method_name = trim($method->name);
-	if($method->actions){
-		fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
-	}else{
-		fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),NULL));
+if($class->methods){
+	print "Write method\n";
+	foreach($class->methods->method as $method){
+		print "\tMethod: ".trim($method->name)."\n";
+		$method_name = trim($method->name);
+		if($method->actions){
+			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
+		}else{
+			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),NULL));
+		}
 	}
 }
-
 print "Write footer\n";
 fwrite($outputFile, $footer);
 fclose($outputFile);
@@ -101,13 +101,18 @@ function write_action($action){
 
 		 	case 'for':
 		 		$result .= "\tfor($"."i=".trim($act['init_value']).";$"."i<=".trim($act['end_value']).";$"."i++){\n\n";
+		 		$result .= "\t\t//your code\n";
 		 		$result .= "\t}\n";
 		 		break;
 		 	case 'while':
-
+		 		$result .= "\twhile(TRUE){\n";
+		 		$result .= "\t\t//your code\n";
+		 		$result .= "\t}\n";
 		 		break;
-		 	case 'while_do':
-
+		 	case 'do_while':
+				$result .= "\tdo{\n";
+		 		$result .= "\t\t//your code\n";
+		 		$result .= "\t}while(TRUE);\n";
 		 		break;
 		 	default:
 		 		

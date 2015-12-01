@@ -1,5 +1,5 @@
 <?php
-$xmlLocation = "../xml/kasus_uji.xml";
+$xmlLocation = "../xml/generatedClass.xml";
 $outputLocation = "../template/";
 
 print "Inisiasi\n";
@@ -62,8 +62,9 @@ if($class->methods){
 	foreach($class->methods->method as $method){
 		print "\tMethod: ".trim($method->name)."\n";
 		$method_name = trim($method->name);
-		if($method->actions){
-			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),json_decode(json_encode($method->actions),TRUE)));
+		$method_code = trim($method->code);
+		if($method->code){
+			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method->params->param),TRUE),$method_code));
 		}else{
 			fwrite($outputFile,write_function($method_name,json_decode(json_encode($method->params->param),TRUE),""));
 		}
@@ -118,13 +119,7 @@ function write_function($name, $attributes, $actions){
 		}
 	}
 	$result .= ") {\n\t\t";
-	if($actions){
-		if(is_array($actions)){
-			foreach($actions as $action){
-				$result .= write_action($action);
-			}
-		}
-	}
+	$result .= $actions;
 	$result .= "\n\t}\n";
 	return $result;
 }

@@ -132,11 +132,16 @@
         <center>
             <h1 style="color:white">PHP Class Generator</h1>
 
+<<<<<<< HEAD
             <hr style="width: 500px;"></hr>
             <hr style="width: 500px;"></hr>
             <br></br>
             <form>
               <div id="container" >
+=======
+            <form method="post" action="src/xmlGenerator.php">
+              <div id="container" class="col-md-8 col-md-offset-2 column" >
+>>>>>>> 276ec15bb8edb8469088e038fe931076c55f7446
                 <div class="form-group">
                   <label for="disabledTextInput" class="label">Nama Kelas</label>
                   <input type="text" id="nama-kelas" style="width: 250px;" class="input" placeholder="nama">
@@ -183,11 +188,16 @@
                 <hr style="width: 500px;"></hr>
                 <hr style="width: 500px;"></hr>
                 <br></br>
+<<<<<<< HEAD
                 <button href=# type="button" class="myButton3" onclick="generateClass();"><i>Generate</i></button>
+=======
+                <button href=# type="submit" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
+>>>>>>> 276ec15bb8edb8469088e038fe931076c55f7446
               </div>
+              <input id="test" name="test" type="hidden"></input>
             </form>
         </center>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script type="text/javascript">
     var numAttribute = 0;
     var numMethod = 0;
@@ -234,9 +244,9 @@
             atribut : attributes,
             method : methods
         };
+        document.getElementById("test").value = JSON.stringify(generated);
 
-
-        console.log(generated);
+        console.log(document.getElementById("test").value);
     }
 
     $('.attr-trigger-attribute').on('click', function(){

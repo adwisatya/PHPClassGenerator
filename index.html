@@ -88,7 +88,7 @@
             <hr></hr>
             <hr></hr>
 
-            <form>
+            <form method="post" action="src/xmlGenerator.php">
               <div id="container" class="col-md-8 col-md-offset-2 column" >
                 <div class="form-group">
                   <label for="disabledTextInput">Nama Kelas</label>
@@ -135,11 +135,12 @@
                 <br></br>
                 <hr></hr>
                 <br></br>
-                <button href=# type="button" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
+                <button href=# type="submit" class="myButtonBig" onclick="generateClass();"><i>Generate</i></button>
               </div>
+              <input id="test" name="test" type="hidden"></input>
             </form>
         </center>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script type="text/javascript">
     var numAttribute = 0;
     var numMethod = 0;
@@ -184,9 +185,9 @@
             atribut : attributes,
             method : methods
         };
+        document.getElementById("test").value = JSON.stringify(generated);
 
-
-        console.log(generated);
+        console.log(document.getElementById("test").value);
     }
 
     $('.attr-trigger-attribute').on('click', function(){

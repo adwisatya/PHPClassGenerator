@@ -1,0 +1,18 @@
+{
+    "namaKelas": "TestClass",
+    "atribut": [
+        {
+            "nama": "attr1",
+            "nilai": "10"
+        }
+    ],
+    "method": [
+        {
+            "name": "method1",
+            "content": "",
+            "parameter": [
+                "param1"
+            ]
+        }
+    ]
+}

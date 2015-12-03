@@ -77,8 +77,8 @@ fclose($outputFile);
 function write_constructor($attributes, $param){
 	$result = "\tpublic function __constructor($param) {\n\t\t";
 	foreach($attributes->attribute as $attribute){
-		if($attribute->value){
-			$name = "$".trim($attribute->name);
+		if($attribute->value!=""){
+			$name = "\$this->".trim($attribute->name);
 			$name .= "=".trim($attribute->value).";\n";
 			$result.=$name;
 		}
@@ -89,14 +89,14 @@ function write_constructor($attributes, $param){
 
 function write_setter($name){
 	$result = "\tpublic function set_".$name;
-	$result .= "(\$param) {\n\t\t$".$name."=\$param;";
+	$result .= "(\$param) {\n\t\t\$this->".$name."=\$param;";
 	$result .= "\n\t}\n";
 	return $result;
 }
 
 function write_getter($name){
 	$result = "\tpublic function get_".$name;
-	$result .= "() {\n\t\treturn ".$name.";";
+	$result .= "() {\n\t\treturn \$this->".$name.";";
 	$result .= "\n\t}\n";
 	return $result;
 }

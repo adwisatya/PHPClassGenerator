@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class><name>cobain</name><attributes><attribute><name>var1</name><value>12</value></attribute></attributes><methods><method><name>coba</name><params><param>param</param></params><code>foreach($class-&gt;methods-&gt;method as $method){
-		print "\tMethod: ".trim($method-&gt;name)."\n";
-		$method_name = trim($method-&gt;name);
-		$method_code = trim($method-&gt;code);
-		if($method-&gt;code){
-			fwrite($outputFile,write_function($method_name, json_decode(json_encode($method-&gt;params-&gt;param),TRUE),$method_code));
-		}else{
-			fwrite($outputFile,write_function($method_name,json_decode(json_encode($method-&gt;params-&gt;param),TRUE),""));
-		}
-	}</code></method></methods></class>
+<class><name>TestClass</name><attributes><attribute><name>attr1</name><value>10</value></attribute></attributes><methods><method><name>method1</name><params><param>param1</param></params><code/></method></methods></class>

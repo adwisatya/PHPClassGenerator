@@ -8,6 +8,9 @@
 	echo $_POST['test'];
 	$str = $_POST['test'];
 	$generatedClass = json_decode($str);
+	$fp = fopen('../intermediate/results.json', 'w');
+	fwrite($fp, json_encode($generatedClass, JSON_PRETTY_PRINT));
+	fclose($fp);
 
 	// inisiasi jumlah variabel
 	$nbAttr = count($generatedClass->atribut);
@@ -38,7 +41,7 @@
 		$methodName = $method->appendChild($methodName);
 		$arguments = $xml->createElement("params");
 		$arguments = $method->appendChild($arguments);
-		for($j=0; $j<$nbParam[$i]; $j++) {
+		for($j=0; $j<count($generatedClass->method[$i]->parameter); $j++) {
 			$param = $xml->createElement("param",$generatedClass->method[$i]->parameter[$j]);
 			$param = $arguments->appendChild($param);
 		}

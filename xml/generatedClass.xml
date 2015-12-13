@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class><name>TestClass</name><attributes><attribute><name>attr1</name><value>10</value></attribute></attributes><methods><method><name>method1</name><params><param>param1</param></params><code/></method></methods></class>
+<class><name>TestClass</name><attributes/><methods><method><name>sum_up</name><params><param/></params><code/></method></methods></class>

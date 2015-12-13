@@ -50,6 +50,7 @@
 	}
 	$xml->FormatOutput = true;
 	$xml->preserveWhiteSpace = false;
+
 	$save = $xml->saveXML();
 	$xml->save("../xml/generatedClass.xml");
 	header("location:Parser.php");

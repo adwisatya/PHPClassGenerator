@@ -83,7 +83,7 @@ function write_constructor($attributes, $param){
 			$result.=$name;
 		}
 	}
-	$result .= "\t}\n";
+	$result .= "\n\t}\n";
 	return $result;
 }
 
@@ -101,7 +101,10 @@ function write_getter($name){
 	return $result;
 }
 
-function write_function($name, $attributes, $actions){
+function write_function($name, $attributes, $actions) {
+	if($name=="") {
+		return;
+	}
 	$result = "\tpublic function ".$name;
 	$result .= "(";
 	if($attributes){

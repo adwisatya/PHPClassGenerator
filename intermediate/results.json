@@ -1,17 +1,12 @@
 {
     "namaKelas": "TestClass",
-    "atribut": [
-        {
-            "nama": "attr1",
-            "nilai": "10"
-        }
-    ],
+    "atribut": [],
     "method": [
         {
-            "name": "method1",
+            "name": "sum_up",
             "content": "",
             "parameter": [
-                "param1"
+                ""
             ]
         }
     ]

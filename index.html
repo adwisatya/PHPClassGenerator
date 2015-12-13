@@ -212,7 +212,9 @@
                 nama : $("#atribut-variabel-"+i).val(),
                 nilai : $("#atribut-nilai-"+i).val()
             };
-            attributes.push(attribute);
+            if($("#atribut-variabel-"+i).val()!="") {
+                attributes.push(attribute);
+            }
         }
         for(var i=0;i<=numMethod;i++){
             var parameters=[];

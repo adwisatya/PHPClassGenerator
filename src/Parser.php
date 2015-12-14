@@ -79,7 +79,7 @@ function write_constructor($attributes, $param){
 	foreach($attributes->attribute as $attribute){
 		if($attribute->value!=""){
 			$name = "\$this->".trim($attribute->name);
-			$name .= "=".trim($attribute->value).";\n";
+			$name .= "=".trim($attribute->value)."\";\n";
 			$result.=$name;
 		}
 	}
